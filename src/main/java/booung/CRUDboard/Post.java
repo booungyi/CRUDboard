@@ -8,11 +8,11 @@ import java.util.List;
 @Entity
 public class Post {
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
     private String content;
-    private String Post;
 
     @ManyToOne
     private Board board;
@@ -20,22 +20,9 @@ public class Post {
     @OneToMany(mappedBy = "comment")
     private List<Comment> comments;
 
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public Board getBoard() {
-        return board;
-    }
-
     public Long getId() {
         return id;
     }
-
-    public String getPost() {
-        return Post;
-    }
-
 
     public String getTitle() {
         return title;
@@ -45,4 +32,11 @@ public class Post {
         return content;
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
 }
