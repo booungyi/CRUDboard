@@ -1,23 +1,18 @@
 package booung.CRUDboard;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Board {
-    //글안에 포함되어야할 것들
-//    작성자 제목 내용 날짜 조회수
-    void context() {
-        Post post = new Post();
-        post.getBoard().context();
 
-    }
+    @Id
+    private Long id;
 
+    private String name;
 
-
-
+    @OneToMany(mappedBy = "board")
+    private List<Post> posts;
 }

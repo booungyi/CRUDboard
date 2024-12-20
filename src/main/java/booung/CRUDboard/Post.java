@@ -1,9 +1,6 @@
 package booung.CRUDboard;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,18 +8,17 @@ import java.util.List;
 @Entity
 public class Post {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
     private String content;
     private String Post;
-    private List<Comment> comments;
 
-
-    private LocalDate Date;
-    private Integer views;
+    @ManyToOne
     private Board board;
-    private String author;
+
+    @OneToMany(mappedBy = "comment")
+    private List<Comment> comments;
 
     public List<Comment> getComments() {
         return comments;
@@ -40,9 +36,6 @@ public class Post {
         return Post;
     }
 
-    public String getAuthor() {
-        return author;
-    }
 
     public String getTitle() {
         return title;
@@ -52,11 +45,4 @@ public class Post {
         return content;
     }
 
-    public LocalDate getDate() {
-        return Date;
-    }
-
-    public Integer getViews() {
-        return views;
-    }
 }
